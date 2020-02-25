@@ -1,0 +1,35 @@
+## 基于配置的sharding-jdbc
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+sharding:
+  jdbc:
+    datasource:
+      names: db1
+      db1:
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/db_1
+        type: com.alibaba.druid.pool.DruidDataSource
+    config:
+      sharding:
+        tables:
+          ### 需要分片的表名称
+          t_order:
+            table-strategy:
+              inline:
+                #### 根据userid 进行分片
+                sharding-column: user_id
+                ### 分片算法表达式, 真实数据库+表名
+                algorithm-expression: db_1.t_order_$->{user_id % 2}
+            ### 真实数据节点，由数据源名 + 表名组成
+            actual-data-nodes: db1.t_order_$->{0..1}
+        props:
+          sql:
+            ### 开启分片日志
+            show: true

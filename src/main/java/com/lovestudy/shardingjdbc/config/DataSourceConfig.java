@@ -21,7 +21,7 @@ import com.dangdang.ddframe.rdb.sharding.id.generator.IdGenerator;
 import com.dangdang.ddframe.rdb.sharding.id.generator.self.CommonSelfIdGenerator;
 
 // 数据源相关配置信息
-//@Configuration
+// @Configuration
 // @ConfigurationProperties(prefix = "spring.jdbc.db0")     // 这些属性需要生成geter seter 方法
 public class DataSourceConfig {
 	@Value("${spring.jdbc.db0.className}")

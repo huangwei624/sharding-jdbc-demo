@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // 数据源相关配置信息
-@Configuration
+// @Configuration
 // @ConfigurationProperties(prefix = "spring.jdbc.db0")     // 这些属性需要生成geter seter 方法
 public class DataSourceConfig2 {
 	@Value("${spring.jdbc.db0.className}")

@@ -36,7 +36,7 @@ public class OrderController {
 	// 增加
 	@RequestMapping("/insertOrder")
 	public String insertOrder(OrderEntity orderEntity) {
-		for (int i = 10; i < 20; i++) {
+		for (int i = 20; i < 40; i++) {
 			OrderEntity order = new OrderEntity();
 			order.setOrderId((long) i);
 			order.setUserId((long) i);
@@ -47,7 +47,17 @@ public class OrderController {
 	
 	@GetMapping("findOrderEntitiesByOrderIdBetween")
 	public List<OrderEntity> findOrderEntitiesByOrderIdBetween(){
-		return orderRepository.findOrderEntitiesByOrderIdBetween(2, 6);
+		return orderRepository.findOrderEntitiesByOrderIdBetweenOrderByOrderId(12, 16);
+	}
+	
+	@GetMapping("findByUserId")
+	public OrderEntity findByUserId(){
+		return orderRepository.findByUserId(14);
+	}
+	
+	@GetMapping("findByOrderId")
+	public OrderEntity findByOrderId(){
+		return orderRepository.findByOrderId(15);
 	}
 
 }
